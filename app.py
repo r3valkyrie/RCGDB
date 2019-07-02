@@ -22,7 +22,7 @@ Having issues? Report them here:
 https://github.com/r3valkyrie/RCGDB/issues/new
 """
 
-extensions = ['modules.utils']
+extensions = ['cogs.utils']
 
 bot = commands.Bot(command_prefix='!', description=description)
 
