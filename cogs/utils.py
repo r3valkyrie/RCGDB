@@ -3,11 +3,6 @@ from modules.embed_message import EmbedMsg
 from discord.ext import commands
 from inspect import cleandoc
 
-with open('config.json') as config:
-    c_data = json.load(config)
-    token = c_data['token']
-    role_whitelist = c_data['role_whitelist']
-
 
 class Utils(commands.Cog, name="Utils"):
     """

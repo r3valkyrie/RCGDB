@@ -7,13 +7,8 @@ Assists with various tasks.
 """
 
 import traceback
-import json
 from discord.ext import commands
-
-with open('config.json') as config:
-    c_data = json.load(config)
-    token = c_data['token']
-    role_whitelist = c_data['role_whitelist']
+from modules.load_config import LoadConfig
 
 description = """
 RCGDB - Reconcile Gaming Discord Bot
@@ -28,7 +23,7 @@ bot = commands.Bot(command_prefix='!', description=description)
 
 
 @bot.command()
-@commands.has_any_role(role_whitelist)
+@commands.has_any_role(LoadConfig().role_whitelist)
 async def load(ctx, extension_name: str):
     """
     Loads an extension.
@@ -60,7 +55,7 @@ if __name__ == '__main__':
             traceback.print_exc()
 
         try:
-            bot.run(token, bot=True, reconnect=True)
+            bot.run(LoadConfig().token, bot=True, reconnect=True)
         except Exception as e:
             print(e)
             traceback.print_exc()
