@@ -10,10 +10,10 @@ import traceback
 import json
 from discord.ext import commands
 
-with open('config.json', 'r') as config:
-    c_data = json.loads(config)
+with open('config.json') as config:
+    c_data = json.load(config)
     token = c_data['token']
-    role_whitelist = " ".join(c_data['role_whitelist'])
+    role_whitelist = c_data['role_whitelist']
 
 description = """
 RCGDB - Reconcile Gaming Discord Bot
@@ -22,7 +22,7 @@ Having issues? Report them here:
 https://github.com/r3valkyrie/RCGDB/issues/new
 """
 
-extensions = ['cogs.utils']
+extensions = ['modules.utils']
 
 bot = commands.Bot(command_prefix='!', description=description)
 
@@ -43,9 +43,15 @@ async def load(ctx, extension_name: str):
 
     await ctx.send("{} loaded".format(extension_name))
 
+
+@bot.event
+async def on_ready():
+    print("Bot initialized!\n")
+    async for guild in bot.fetch_guilds():
+        print(f"Connected to {guild.name} as {bot.user}")
+
 if __name__ == '__main__':
-    print(role_whitelist)
-    print(token)
+    print("Initializing bot...")
     for extension in extensions:
         try:
             bot.load_extension(extension)

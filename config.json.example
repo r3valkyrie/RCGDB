@@ -1,4 +1,4 @@
 {
   "token": "Bot token here.",
-  "role_whitelist": 154687031979540480
+  "role_whitelist": [154687031979540480]
 }
