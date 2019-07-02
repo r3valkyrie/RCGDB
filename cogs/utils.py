@@ -30,8 +30,7 @@ class Utils(commands.Cog, name="Utils"):
             if ctx.author.voice.channel is not None:
 
                 description = cleandoc(f"""
-                {ctx.author.mention}\n
-                Click the link below to begin screen sharing in your voice channel!\n
+                Click the link below to begin screen sharing in voice channel: \U0001F56A {ctx.author.voice.channel.name}\n
                 https://www.discordapp.com/channels/{ctx.guild.id}/{ctx.author.voice.channel.id}
                 """)
 
