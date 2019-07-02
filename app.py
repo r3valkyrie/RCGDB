@@ -22,6 +22,7 @@ extensions = ['cogs.utils']
 bot = commands.Bot(command_prefix='!', description=description)
 
 
+# TODO: Fix the role whitelist entry in config.json.example to properly iterate through multiple roles.
 @bot.command()
 @commands.has_any_role(LoadConfig().role_whitelist)
 async def load(ctx, extension_name: str):
@@ -32,7 +33,7 @@ async def load(ctx, extension_name: str):
     """
 
     try:
-        bot.load_extension(extension_name)
+        bot.load_extension('cogs.' + extension_name)
     except (AttributeError, ImportError) as ex:
         await ctx.send("```py\n{}: {}\n```".format(type(ex).__name__, str(ex)))
 
